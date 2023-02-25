@@ -1,26 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {NavTop} from "./components/NavTop";
+import "./services/firebase";
+import {ShopPage} from "./pages/ShopPage";
+import {useLocalStorage} from "./hooks/useLocalStorage";
+
 
 function App() {
+  const [cart, setCart] = useLocalStorage("cart", []);
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="App">
+        <NavTop cart={cart}/>
+        <header className="App-header">
+          <ShopPage cart={cart} setCart={setCart}/>
+        </header>
+      </div>
   );
 }
+
 
 export default App;
